@@ -4,7 +4,12 @@ import (
     "time"
 )
 
-type Item struct {
-	name string
-	createdOn time.Time
+type item struct {
+	Task string
+	Done bool
+	Category string
+	CreatedOn time.Time
+	CompletedOn time.Time
 }
+
+type List []item
