@@ -4,6 +4,7 @@ import (
 	"github.com/spf13/cobra"
 	"task-tracker/types"
 	helpers "task-tracker/helpers"
+	"github.com/jedib0t/go-pretty/v6/table"
 	"os"
 	"encoding/json"
 	"fmt"
@@ -28,10 +29,25 @@ func List(list *types.Tasks) error {
 		return err
 	}
 	err = json.Unmarshal(data, list)
-	fmt.Println(list)
+	fmt.Println("Current Task  List:")
+	printData(list)
 	if err != nil {
 		fmt.Println(err)
 		return err
 	}
 	return nil
+}
+
+func printData(list *types.Tasks){
+	t := table.NewWriter()
+    t.SetOutputMirror(os.Stdout)
+    t.AppendHeader(table.Row{"ID", "Task", "Done", "Category","Created On", "Completed On"})
+	for _, v := range *list {
+		t.AppendRows([]table.Row{
+			{v.ID,v.Task,v.Done,v.Category,v.CreatedOn,v.CompletedOn},
+		})
+		t.AppendSeparator()
+	}
+    t.AppendFooter(table.Row{"Total", len(*list)})
+    t.Render()
 }
