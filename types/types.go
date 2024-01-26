@@ -1,15 +1,18 @@
 package types
 
 import (
-    "time"
+	"time"
+	"github.com/google/uuid"
+
 )
 
-type item struct {
+type TaskItem struct {
+	ID uuid.UUID
 	Task string
 	Done bool
 	Category string
 	CreatedOn time.Time
-	CompletedOn time.Time
+	CompletedOn *time.Time
 }
 
-type List []item
+type Tasks []TaskItem

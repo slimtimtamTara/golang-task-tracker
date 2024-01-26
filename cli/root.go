@@ -10,7 +10,7 @@ import (
 var RootCmd = &cobra.Command{
 	Use:   "track-task",
 	Short: "keep track of your tasks",
-	Long:  `first time making a cli. I'm assuming this one is the outer layer?`,
+	Long:  `Welcome to the Task-Tracking CLI, my first cli ever :)`,
 }
 
 func Execute() {
